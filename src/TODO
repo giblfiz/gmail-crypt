@@ -8,3 +8,13 @@ Make Drafts stop uploading to gmail.
 Send email to multiple recipients
 
 Provide the ability to encrypt/decrypt blocks of text on random pages by right clicking
+
+
+Harry's todo list:
+
+1) add unit testing framework
+2) build object for interacting with public key server
+3) key-auto-pull functionality
+4) key-auto-upload on generation
+5) tools to deal with multiple matching keys
+6) Deal with encrypted attachments
