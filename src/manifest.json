@@ -7,13 +7,14 @@
     "128":"gmail-crypt128.png"
     },
 "permissions":[
+    "http://pgp.mit.edu:11371/*",
     "https://mail.google.com/*",
     "http://mail.google.com/*",
     "https://google.com/*",
     "http://google.com/*"
     ],
 "background": {
-    "scripts":["lib/openpgp.js", "gmail-cryptUtil.js", "gmail-cryptBackground.js", "public-key-server.js"]
+    "scripts":["lib/openpgp.js", "gmail-cryptUtil.js", "gmail-cryptBackground.js", "public-key-server.js", "jquery-2.0.2.js"]
     },
 "content_scripts": [{
     "matches":["https://mail.google.com/*","http://mail.google.com/*"],

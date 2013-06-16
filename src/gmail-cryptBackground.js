@@ -21,7 +21,8 @@ chrome.extension.onRequest.addListener(function(request,sender,sendResponse){
             catch(e){
 
             }
-        }else if (request.myKeyId) {
+        } 
+        if (request.myKeyId) {
             debugger;
             var myKey = openpgp.keyring.getPublicKeysForKeyId(request.myKeyId)[0];
             var myEmail = gCryptUtil.parseUser(myKey.obj.userIds[0].text).userEmail;
@@ -48,10 +49,13 @@ chrome.extension.onRequest.addListener(function(request,sender,sendResponse){
     } else if(request.method == "getPublicKeyServer"){
         var pks = getPublicKeyServer();
         sendResponse(pks);
+    } else if(request.method == "pksSearchByEmail"){
+        var pks = getPublicKeyServer();
+        pks.searchByEmail(request.emails, function(results){
+          sendResponse(results);
+        });
     }
-    
-    else{
-    }
+
 });
 
 
