@@ -1,3 +1,5 @@
-test( "hello test", function() {
-  ok( 1 == "1", "Passed!" );
+test( "basicResponse", function() {
+  var pks = getPublicKeyServer();
+  equal( pks.url, 'pgp.mit.edu', "URL Passed!" );
+  equal( pks.port, '11371', "Port Passed!" );
 });

@@ -12,7 +12,7 @@ Provide the ability to encrypt/decrypt blocks of text on random pages by right c
 
 Harry's todo list:
 
-1) add unit testing framework
+-DONE- 1) add unit testing framework
 2) build object for interacting with public key server
 3) key-auto-pull functionality
 4) key-auto-upload on generation
