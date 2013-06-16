@@ -13,7 +13,7 @@
     "http://google.com/*"
     ],
 "background": {
-    "scripts":["lib/openpgp.js", "gmail-cryptUtil.js", "gmail-cryptBackground.js"]
+    "scripts":["lib/openpgp.js", "gmail-cryptUtil.js", "gmail-cryptBackground.js", "public-key-server.js"]
     },
 "content_scripts": [{
     "matches":["https://mail.google.com/*","http://mail.google.com/*"],

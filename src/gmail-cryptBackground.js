@@ -53,6 +53,11 @@ chrome.extension.onRequest.addListener(function(request,sender,sendResponse){
     if(request.method == "getConfig"){
         sendResponse(openpgp.config);
     }
+    if(request.method == "getPublicKeyServer"){
+        var pks = getPublicKeyServer();
+        sendResponse(pks);
+    }
+    
     else{
     }
 });
@@ -62,4 +67,4 @@ function onLoad(){
     openpgp.init();
 }
 
-document.onload = onLoad();
+Document.onload = onLoad();

@@ -191,9 +191,17 @@ function encrypt(event){
     form.find('.alert').hide();
     var contents = getContents(form, event);
 
+console.log("in function encrypt 1");
+chrome.extension.sendRequest({method:"getPublicKeyServer"}, function(response){
+  console.log("got a PKS", response);
+})
+console.log("in function encrypt 2");
+
+
     
     getRecipients(form, event, function(recipients){
         if(recipients.email.length === 0){
+console.log("alert no email");
             showAlert(gCryptAlerts.gCryptAlertEncryptNoUser);
             return;
         }
@@ -204,6 +212,7 @@ function encrypt(event){
         chrome.extension.sendRequest({method: "getPublicKeys",emails:recipients.email, myKeyId:myKeyId}, function(response){
             var responseKeys = Object.keys(response);
             if(responseKeys.length === 0){
+console.log("alert no keys at all");
                 showAlert(gCryptAlerts.gCryptAlertEncryptNoUser, form);
                 return;
             }
@@ -211,6 +220,7 @@ function encrypt(event){
             for(var r in responseKeys){
                 var recipient = responseKeys[r];
                 if(response[recipient].length === 0) {
+console.log("alert no key for user ");
                     showAlert(gCryptAlerts.gCryptAlertEncryptNoUser, form);
                 }
                 else{
