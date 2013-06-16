@@ -10,8 +10,7 @@ chrome.extension.onRequest.addListener(function(request,sender,sendResponse){
     openpgp.keyring.init(); //We need to handle changes that might have been made.
     if(request.method == "getAllPublicKeys"){
         sendResponse(openpgp.keyring.publicKeys);
-    }
-    if(request.method == "getPublicKeys"){
+    } else if(request.method == "getPublicKeys"){
         var keys = {};
         for(var email in request.emails){
             try{
@@ -22,25 +21,20 @@ chrome.extension.onRequest.addListener(function(request,sender,sendResponse){
             catch(e){
 
             }
-        }
-        if (request.myKeyId) {
+        }else if (request.myKeyId) {
             debugger;
             var myKey = openpgp.keyring.getPublicKeysForKeyId(request.myKeyId)[0];
             var myEmail = gCryptUtil.parseUser(myKey.obj.userIds[0].text).userEmail;
             keys[myEmail] = myKey.armored;
         }
         sendResponse(keys);
-    }
-    if(request.method == "getPublicKey"){
+    } else if(request.method == "getPublicKey"){
         sendResponse(openpgp.keyring.getPublicKeyForAddress(request.email));
-    }
-    if(request.method == "getPrivateKey"){
+    } else if(request.method == "getPrivateKey"){
         sendResponse(openpgp.keyring.getPrivateKeyForAddress(request.email));
-    }
-    if(request.method == "getPrivateKeys"){
+    } else if (request.method == "getPrivateKeys"){
         sendResponse(openpgp.keyring.privateKeys);
-    }
-    if(request.method == "getOption"){
+    } else if(request.method == "getOption"){
         openpgp.config.read();
         var gCryptSettings = openpgp.config.config.gCrypt;
         if(!gCryptSettings){
@@ -49,11 +43,9 @@ chrome.extension.onRequest.addListener(function(request,sender,sendResponse){
         else{
             sendResponse(gCryptSettings[request.option]);
         }
-    }
-    if(request.method == "getConfig"){
+    } else if(request.method == "getConfig"){
         sendResponse(openpgp.config);
-    }
-    if(request.method == "getPublicKeyServer"){
+    } else if(request.method == "getPublicKeyServer"){
         var pks = getPublicKeyServer();
         sendResponse(pks);
     }
