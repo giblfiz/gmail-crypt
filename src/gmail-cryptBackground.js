@@ -50,8 +50,10 @@ chrome.extension.onRequest.addListener(function(request,sender,sendResponse){
         var pks = getPublicKeyServer();
         sendResponse(pks);
     } else if(request.method == "pksSearchByEmail"){
+      console.log("dispatch pksSearchByEmail", request.emails);
         var pks = getPublicKeyServer();
         pks.searchByEmail(request.emails, function(results){
+      console.log("responding from pksSearchByEmail");
           sendResponse(results);
         });
     }

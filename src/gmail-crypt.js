@@ -192,10 +192,6 @@ function encrypt(event){
     var contents = getContents(form, event);
 
 console.log("in function encrypt 1");
-chrome.extension.sendRequest({method:"getPublicKeyServer"}, function(response){
-  console.log("got a PKS", response);
-})
-console.log("in function encrypt 2");
 
 
     
@@ -212,7 +208,15 @@ console.log("alert no email");
         chrome.extension.sendRequest({method: "getPublicKeys",emails:recipients.email, myKeyId:myKeyId}, function(response){
             var responseKeys = Object.keys(response);
             if(responseKeys.length === 0){
-console.log("alert no keys at all");
+console.log("alert no keys at all...", recipients.email);
+
+chrome.extension.sendRequest({method:"pksSearchByEmail", emails:recipients.email}, function(response){
+  console.log("got searchResults", response);
+})
+
+
+
+
                 showAlert(gCryptAlerts.gCryptAlertEncryptNoUser, form);
                 return;
             }
