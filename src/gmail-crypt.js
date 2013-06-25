@@ -212,6 +212,7 @@ console.log("alert no keys at all...", recipients.email);
 
 chrome.extension.sendRequest({method:"pksSearchByEmail", emails:recipients.email}, function(response){
   console.log("got searchResults", response);
+  showModalAlert(response);
 })
 
 
